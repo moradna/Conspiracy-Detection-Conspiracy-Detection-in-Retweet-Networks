@@ -1,8 +1,8 @@
-# Conspiracy-Detection-Conspiracy-Detection-in-Retweet-Networks
-Enhancing Conspiracy Detection in Hebrew Tweets Using Retweet Networks and Large Language Models
-# Conspiracy Detection in Hebrew Tweets with LLMs and Network Context
+# Enhancing Conspiracy Detection in Hebrew Tweets Using Retweet Networks and Large Language Models
 
 This project explores enhanced conspiracy theory detection in Hebrew-language tweets using a combination of **textual analysis via large language models (LLMs)** and **retweet network-based features**. The work focuses on identifying hidden conspiratorial content—particularly in the context of COVID-19 and vaccine skepticism—by combining **graph structure insights** with **Chain-of-Thought (CoT) prompting** for better reasoning.
+
+---
 
 ## 📌 Project Goals
 
@@ -11,30 +11,51 @@ This project explores enhanced conspiracy theory detection in Hebrew-language tw
 - Leverage **Chain-of-Thought reasoning** to improve model interpretability and accuracy.
 - Evaluate performance across different structured prompting strategies.
 
+---
+
 ## 🧠 Methodology
 
 1. **Dataset**  
-   - 4,000 Hebrew tweets labeled as:  
+   - 4,000 Hebrew tweets categorized into:  
      - `Unrelated`  
      - `COVID-related`  
      - `Vaccine Opposition`  
-   - Annotated using 5 binary questions regarding conspiracy traits.
+   - Annotated with 5 binary questions assessing conspiracy traits.
 
-2. **Graph Construction**  
-   - Built a **retweet network** (195 users, 739 edges).  
-   - Extracted key **network features** per user:
-     - In/Out degree
-     - Betweenness and closeness centrality
+2. **Retweet Graph Construction**  
+   - Built a **retweet network** of 195 users and 739 edges.  
+   - Extracted key **network features**:
+     - In-degree / Out-degree
+     - Closeness / Betweenness centrality
      - Community size
      - Number of conspiratorial neighbors
 
 3. **Prompting Strategies**  
-   - Created 7 prompt types:
-     - Minimal prompt (text only)
-     - Prompts with added network features (degree, centrality, etc.)
-     - Full-feature prompt with and without Chain-of-Thought (CoT)
+   - 7 prompt types tested:
+     - Minimal (text only)
+     - Degree-based
+     - Centrality-based
+     - Community-based
+     - Full-Feature
+     - Minimal + CoT
+     - Full-Feature + CoT
+## 🕸️ Retweet Network Visualization
 
-## 🧪 Results
+Add **network-based context** to each tweet using a graph of user interactions (retweets).  
+Red = conspiratorial users, Blue = non-conspiratorial, Gray = unlabeled.
+
+![Retweet Graph](figures/retweet_graph.png)
+
+## 🤖 Language Models
+
+We tested two models:
+
+- **DictaLM-2.0** – Hebrew-specific LLM, but struggled with task consistency.
+- **Gemini** – Multilingual LLM with better reasoning and accuracy.
+
+Gemini with **Chain-of-Thought prompting** achieved the best results.
+
+## 📊 Results
 
 | Prompt Type                         | Accuracy (%) | Precision (%) | Recall (%) | F1 Score (%) |
 |------------------------------------|--------------|----------------|-------------|----------------|
@@ -46,19 +67,31 @@ This project explores enhanced conspiracy theory detection in Hebrew-language tw
 | Minimal Prompt + CoT               | 57.85        | 40.58          | 94.69       | 56.81          |
 | **Full-Feature Prompt + CoT**      | **76.04**    | **58.12**      | **68.34**   | **62.82**      |
 
-> The **Full-Feature Prompt with CoT** outperformed all other strategies, demonstrating that LLMs can better interpret network-based context when guided step-by-step.
+> 🧠 **Chain-of-Thought reasoning** with all network features led to the best performance — indicating that structured step-by-step processing helps LLMs utilize social context effectively.
 
-## 📈 Key Insights
+---
+## 📈 Visual Results
 
-- **Text-only approaches** yielded poor precision (many false positives).
-- **Network features** help provide valuable context for tweet classification.
-- **Chain-of-Thought** prompting enables the model to reason more effectively about complex feature combinations.
+### 🔹 Performance Metrics  
+![Performance Chart](figures/F2.png)
 
-## 🛠️ Technologies
+### 🔹 Confusion Matrix Breakdown  
+![Confusion Matrix](figures/F3.png)
 
-- Hebrew LLMs: `DictaLM-2.0`, `Gemini`
-- Graph tools: NetworkX
-- Prompting + Evaluation: Python
+---
 
-## 📂 Project Structure
+## 💬 CoT Prompt Examples
 
+Illustrations of how the LLM used structured reasoning and social features to classify tweets:
+
+### 🟥 False Positives (Predicted Conspiracy, but wasn't)
+- ![](figures/FP_Ex1.jpg)
+- ![](figures/FP_Ex2.jpg)
+- ![](figures/FP_Ex3.jpg)
+
+### 🟦 False Negatives (Missed conspiracy)
+- ![](figures/FN_Ex1.jpg)
+- ![](figures/FN_Ex2.jpg)
+- ![](figures/FN_Ex3.jpg)
+
+These examples highlight how the model balanced between textual ambiguity and graph-derived context.
