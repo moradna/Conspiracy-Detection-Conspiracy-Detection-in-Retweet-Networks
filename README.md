@@ -69,8 +69,9 @@ Gemini with **Chain-of-Thought prompting** achieved the best results.
 
 > 🧠 **Chain-of-Thought reasoning** with all network features led to the best performance — indicating that structured step-by-step processing helps LLMs utilize social context effectively.
 
----
+
 ## 📈 Visual Results
+---
 
 ### 🔹 Performance Metrics  
 ![Performance Chart](figures/F2.png)
@@ -78,20 +79,14 @@ Gemini with **Chain-of-Thought prompting** achieved the best results.
 ### 🔹 Confusion Matrix Breakdown  
 ![Confusion Matrix](figures/F3.png)
 
----
-
 ## 💬 CoT Prompt Examples
 
 Illustrations of how the LLM used structured reasoning and social features to classify tweets:
 
 ### 🟥 False Positives (Predicted Conspiracy, but wasn't)
 - ![](figures/FP_Ex1.jpg)
-- ![](figures/FP_Ex2.jpg)
-- ![](figures/FP_Ex3.jpg)
 
 ### 🟦 False Negatives (Missed conspiracy)
 - ![](figures/FN_Ex1.jpg)
-- ![](figures/FN_Ex2.jpg)
-- ![](figures/FN_Ex3.jpg)
 
 These examples highlight how the model balanced between textual ambiguity and graph-derived context.
