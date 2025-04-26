@@ -44,7 +44,7 @@ This project explores enhanced conspiracy theory detection in Hebrew-language tw
 Add **network-based context** to each tweet using a graph of user interactions (retweets).  
 Red = conspiratorial users, Blue = non-conspiratorial, Gray = unlabeled.
 
-![Retweet Graph](figures/retweet_graph.png)
+![Retweet Graph](figures/retweet_network.png)
 
 ## 🤖 Language Models
 
