@@ -16,11 +16,7 @@ This project explores enhanced conspiracy theory detection in Hebrew-language tw
 ## 🧠 Methodology
 
 1. **Dataset**  
-   - 4,000 Hebrew tweets categorized into:  
-     - `Unrelated`  
-     - `COVID-related`  
-     - `Vaccine Opposition`  
-   - Annotated with 5 binary questions assessing conspiracy traits.
+   - 4,000 Hebrew tweets manually labeled as Conspiracy or Not Conspiracy
 
 2. **Retweet Graph Construction**  
    - Built a **retweet network** of 195 users and 739 edges.  
@@ -60,12 +56,12 @@ Gemini with **Chain-of-Thought prompting** achieved the best results.
 | Prompt Type                         | Accuracy (%) | Precision (%) | Recall (%) | F1 Score (%) |
 |------------------------------------|--------------|----------------|-------------|----------------|
 | Minimal Prompt                     | 59.29        | 41.11          | 94.39       | 57.28          |
-| Degree-Based Prompt                | 62.97        | 43.33          | 95.29       | 59.57          |
+| Degree-Based Prompt                | 62.97        | 43.33          | **95.29**       | 59.57          |
 | Centrality-Based Prompt            | 69.36        | 47.68          | 81.05       | 60.04          |
 | Community + Neighbors-Based Prompt| 58.54        | 40.76          | 93.37       | 56.74          |
 | Full-Feature Prompt                | 59.52        | 41.69          | 91.96       | 57.37          |
 | Minimal Prompt + CoT               | 57.85        | 40.58          | 94.69       | 56.81          |
-| **Full-Feature Prompt + CoT**      | **76.04**    | **58.12**      | **68.34**   | **62.82**      |
+| **Full-Feature Prompt + CoT**      | **76.04**    | **58.12**      | 68.34   | **62.82**      |
 
 > 🧠 **Chain-of-Thought reasoning** with all network features led to the best performance — indicating that structured step-by-step processing helps LLMs utilize social context effectively.
 
